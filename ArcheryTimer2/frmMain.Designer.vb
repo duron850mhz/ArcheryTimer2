@@ -23,6 +23,7 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.lblTimer = New System.Windows.Forms.Label()
         Me.btnSetting = New System.Windows.Forms.Button()
         Me.btnStart = New System.Windows.Forms.Button()
@@ -38,12 +39,12 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTimer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblTimer.Font = New System.Drawing.Font("Arial Narrow", 399.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTimer.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTimer.Location = New System.Drawing.Point(12, 9)
         Me.lblTimer.Name = "lblTimer"
         Me.lblTimer.Size = New System.Drawing.Size(968, 468)
         Me.lblTimer.TabIndex = 0
-        Me.lblTimer.Text = "9:99"
+        Me.lblTimer.Text = "9:9999999"
         Me.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'btnSetting
@@ -101,6 +102,10 @@ Partial Class frmMain
         Me.btnQuit.Text = "終了"
         Me.btnQuit.UseVisualStyleBackColor = True
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1000
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -112,6 +117,7 @@ Partial Class frmMain
         Me.Controls.Add(Me.btnStart)
         Me.Controls.Add(Me.btnSetting)
         Me.Controls.Add(Me.lblTimer)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMain"
         Me.Text = "ArcheryTimer2"
         Me.ResumeLayout(False)
