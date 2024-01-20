@@ -39,13 +39,14 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTimer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblTimer.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTimer.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTimer.Location = New System.Drawing.Point(12, 9)
         Me.lblTimer.Name = "lblTimer"
         Me.lblTimer.Size = New System.Drawing.Size(968, 468)
         Me.lblTimer.TabIndex = 0
-        Me.lblTimer.Text = "9:9999999"
+        Me.lblTimer.Text = "9:99"
         Me.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblTimer.UseMnemonic = False
         '
         'btnSetting
         '

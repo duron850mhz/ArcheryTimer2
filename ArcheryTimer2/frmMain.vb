@@ -41,17 +41,15 @@ Public Class frmMain
     ''' </summary>
     ''' <param name="iKind"></param>
     Private Sub I_PlaySound(iKind As Integer)
-        Dim strFile As String
-
         Select Case iKind
             Case 0
-                strFile = Path.Combine(LG_strAppPath, "Start.wav")
-                My.Computer.Audio.Play(strFile, AudioPlayMode.WaitToComplete)
-                strFile = Path.Combine(LG_strAppPath, "Last.wav")
-                My.Computer.Audio.Play(strFile, AudioPlayMode.Background)
+                Dim strm As System.IO.Stream = My.Resources.Start
+                My.Computer.Audio.Play(strm, AudioPlayMode.WaitToComplete)
+                strm = My.Resources.Last
+                My.Computer.Audio.Play(strm, AudioPlayMode.Background)
             Case 1
-                strFile = Path.Combine(LG_strAppPath, "Start.wav")
-                My.Computer.Audio.Play(strFile, AudioPlayMode.Background)
+                Dim strm As System.IO.Stream = My.Resources.Start
+                My.Computer.Audio.Play(strm, AudioPlayMode.Background)
         End Select
     End Sub
 
@@ -212,7 +210,7 @@ Public Class frmMain
         Do
             Dim bPlus As Boolean = True
             If LG_Size.Width > MyBase.Width Or LG_Size.Height > MyBase.Height Then
-                'ﾁﾁﾞﾒﾀ
+                '縮めた
                 If lblTimer.Font.Size <= 1 Then
                     Exit Do
                 End If
@@ -243,7 +241,5 @@ Public Class frmMain
                 End If
             End If
         Loop
-
-        'Console.WriteLine("LW:{0} LH:{1} W:{2} H:{3} Fs:{4}", lblTimer.Width, lblTimer.Height, iWidth, iHeight, lblTimer.Font.Size)
     End Sub
 End Class
