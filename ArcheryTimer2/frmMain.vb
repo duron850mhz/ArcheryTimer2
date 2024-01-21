@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 
 Public Class frmMain
     Dim LG_iCounter As Integer          '現在秒数
@@ -128,11 +129,33 @@ Public Class frmMain
     End Sub
 
     ''' <summary>
+    ''' Form Closing
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Select Case Me.WindowState
+            Case FormWindowState.Normal
+                XX_Option.iWidth = Me.ClientSize.Width
+                XX_Option.iHeight = Me.ClientSize.Height
+                XX_Option.iTop = Me.Top
+                XX_Option.iLeft = Me.Left
+                XX_Option.bMaximized = False
+            Case FormWindowState.Minimized
+                XX_Option.bMaximized = False
+            Case FormWindowState.Maximized
+                XX_Option.bMaximized = True
+        End Select
+
+        Call G_RWOption(EN_RW.write)
+    End Sub
+
+    ''' <summary>
     ''' Form Load
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub frmSetting_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '---< Read Ini >---
         Call G_RWOption(EN_RW.read)
 
@@ -143,6 +166,41 @@ Public Class frmMain
         Timer1.Enabled = False
         btnPause.Enabled = False
         Call I_FormInit()
+    End Sub
+
+    ''' <summary>
+    ''' フォームサイズ変更
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub frmMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        If LG_bShown = True Then
+            Call I_ChangeFontSize()
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' フォーム表示
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        LG_bShown = True
+
+        Me.Top = XX_Option.iTop
+        Me.Left = XX_Option.iLeft
+
+        If XX_Option.iWidth >= MyBase.MinimumSize.Width Then
+            If XX_Option.iHeight >= MyBase.MinimumSize.Height Then
+                Me.ClientSize = New Size(XX_Option.iWidth, XX_Option.iHeight)
+            End If
+        End If
+
+        If XX_Option.bMaximized = True Then
+            Me.WindowState = FormWindowState.Maximized
+        End If
+
+        Call I_ChangeFontSize()
     End Sub
 
     ''' <summary>
@@ -176,27 +234,6 @@ Public Class frmMain
             Timer1.Enabled = False
             btnStart.Focus()
         End If
-    End Sub
-
-    ''' <summary>
-    ''' フォームサイズ変更
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub frmMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
-        If LG_bShown = True Then
-            Call I_ChangeFontSize()
-        End If
-    End Sub
-
-    ''' <summary>
-    ''' フォーム表示
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        LG_bShown = True
-        Call I_ChangeFontSize()
     End Sub
 
     ''' <summary>

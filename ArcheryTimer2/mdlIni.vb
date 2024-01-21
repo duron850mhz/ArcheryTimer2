@@ -11,6 +11,12 @@
         Dim cStartColor As Color        '事前秒数の色
         Dim cTimerColor As Color        '通常の色
         Dim cChangeColor As Color       '変更後の色
+        '
+        Dim iWidth As Integer           '横幅
+        Dim iHeight As Integer          '高さ
+        Dim iTop As Integer             '上端位置
+        Dim iLeft As Integer            '左端位置
+        Dim bMaximized As Boolean       '最大化
     End Structure
     Public XX_Option As stOption
 
@@ -22,14 +28,14 @@
         write
     End Enum
 
-    Declare Function WritePrivateProfileString _
+    Private Declare Function WritePrivateProfileString _
             Lib "KERNEL32.DLL" Alias "WritePrivateProfileStringA" (
                 ByVal lpAppName As String,
                 ByVal lpKeyName As String,
                 ByVal lpString As String,
                 ByVal lpFileName As String) As Integer
 
-    Declare Function GetPrivateProfileString _
+    Private Declare Function GetPrivateProfileString _
             Lib "KERNEL32.DLL" Alias "GetPrivateProfileStringA" (
                 ByVal lpAppName As String,
                 ByVal lpKeyName As String,
@@ -38,14 +44,19 @@
                 ByVal nSize As Integer,
                 ByVal lpFileName As String) As Integer
 
-    Public Const ZZ_SECTION = "Setting"
-    Public Const ZZ_KEY_TIME = "設定秒数"
-    Public Const ZZ_KEY_STARTTIME = "事前秒数"
-    Public Const ZZ_KEY_CHANGETIME = "変更秒数"
-    Public Const ZZ_KEY_BACKCOLOR = "背景色"
-    Public Const ZZ_KEY_STARTCOLOR = "事前色"
-    Public Const ZZ_KEY_TIMERCOLOR = "通常色"
-    Public Const ZZ_KEY_CHANGECOLOR = "変更色"
+    Private Const ZZ_SECTION = "Setting"
+    Private Const ZZ_KEY_TIME = "設定秒数"
+    Private Const ZZ_KEY_STARTTIME = "事前秒数"
+    Private Const ZZ_KEY_CHANGETIME = "変更秒数"
+    Private Const ZZ_KEY_BACKCOLOR = "背景色"
+    Private Const ZZ_KEY_STARTCOLOR = "事前色"
+    Private Const ZZ_KEY_TIMERCOLOR = "通常色"
+    Private Const ZZ_KEY_CHANGECOLOR = "変更色"
+    Private Const ZZ_KEY_WIDTH = "横幅"
+    Private Const ZZ_KEY_HEIGHT = "高さ"
+    Private Const ZZ_KEY_TOP = "上端"
+    Private Const ZZ_KEY_LEFT = "左端"
+    Private Const ZZ_KEY_MAXIMIZE = "最大化"
 
     '===============================================================================
 
@@ -103,6 +114,12 @@
                         XX_Option.cStartColor = New ColorConverter().ConvertFromString(API_ReadINI(ZZ_SECTION, ZZ_KEY_STARTCOLOR))
                         XX_Option.cTimerColor = New ColorConverter().ConvertFromString(API_ReadINI(ZZ_SECTION, ZZ_KEY_TIMERCOLOR))
                         XX_Option.cChangeColor = New ColorConverter().ConvertFromString(API_ReadINI(ZZ_SECTION, ZZ_KEY_CHANGECOLOR))
+                        '
+                        XX_Option.iWidth = Val(API_ReadINI(ZZ_SECTION, ZZ_KEY_WIDTH))
+                        XX_Option.iHeight = Val(API_ReadINI(ZZ_SECTION, ZZ_KEY_HEIGHT))
+                        XX_Option.iTop = Val(API_ReadINI(ZZ_SECTION, ZZ_KEY_TOP))
+                        XX_Option.iLeft = Val(API_ReadINI(ZZ_SECTION, ZZ_KEY_LEFT))
+                        XX_Option.bMaximized = API_ReadINI(ZZ_SECTION, ZZ_KEY_MAXIMIZE)
                     Else
                         XX_Option.iTime = 90
                         XX_Option.iStartTime = 10
@@ -111,6 +128,11 @@
                         XX_Option.cStartColor = Color.Blue
                         XX_Option.cTimerColor = Color.Black
                         XX_Option.cChangeColor = Color.Red
+                        '
+                        XX_Option.iWidth = frmMain.MinimumSize.Width
+                        XX_Option.iHeight = frmMain.MinimumSize.Height
+                        XX_Option.iTop = 0
+                        XX_Option.iLeft = 0
                     End If
                 Case EN_RW.write
                     Call API_WriteIni(ZZ_SECTION, ZZ_KEY_TIME, XX_Option.iTime.ToString)
@@ -120,6 +142,11 @@
                     Call API_WriteIni(ZZ_SECTION, ZZ_KEY_STARTCOLOR, New ColorConverter().ConvertToString(XX_Option.cStartColor))
                     Call API_WriteIni(ZZ_SECTION, ZZ_KEY_TIMERCOLOR, New ColorConverter().ConvertToString(XX_Option.cTimerColor))
                     Call API_WriteIni(ZZ_SECTION, ZZ_KEY_CHANGECOLOR, New ColorConverter().ConvertToString(XX_Option.cChangeColor))
+                    Call API_WriteIni(ZZ_SECTION, ZZ_KEY_WIDTH, XX_Option.iWidth.ToString)
+                    Call API_WriteIni(ZZ_SECTION, ZZ_KEY_HEIGHT, XX_Option.iHeight.ToString)
+                    Call API_WriteIni(ZZ_SECTION, ZZ_KEY_TOP, XX_Option.iTop.ToString)
+                    Call API_WriteIni(ZZ_SECTION, ZZ_KEY_LEFT, XX_Option.iLeft.ToString)
+                    Call API_WriteIni(ZZ_SECTION, ZZ_KEY_MAXIMIZE, XX_Option.bMaximized)
             End Select
         Catch ex As Exception
             bRet = False

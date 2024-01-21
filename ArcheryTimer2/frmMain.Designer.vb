@@ -42,7 +42,7 @@ Partial Class frmMain
         Me.lblTimer.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTimer.Location = New System.Drawing.Point(12, 9)
         Me.lblTimer.Name = "lblTimer"
-        Me.lblTimer.Size = New System.Drawing.Size(968, 468)
+        Me.lblTimer.Size = New System.Drawing.Size(760, 483)
         Me.lblTimer.TabIndex = 0
         Me.lblTimer.Text = "9:99"
         Me.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -52,7 +52,7 @@ Partial Class frmMain
         '
         Me.btnSetting.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnSetting.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnSetting.Location = New System.Drawing.Point(12, 480)
+        Me.btnSetting.Location = New System.Drawing.Point(12, 495)
         Me.btnSetting.Name = "btnSetting"
         Me.btnSetting.Size = New System.Drawing.Size(130, 54)
         Me.btnSetting.TabIndex = 5
@@ -63,7 +63,7 @@ Partial Class frmMain
         '
         Me.btnStart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnStart.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnStart.Location = New System.Drawing.Point(442, 480)
+        Me.btnStart.Location = New System.Drawing.Point(234, 495)
         Me.btnStart.Name = "btnStart"
         Me.btnStart.Size = New System.Drawing.Size(130, 54)
         Me.btnStart.TabIndex = 1
@@ -74,7 +74,7 @@ Partial Class frmMain
         '
         Me.btnPause.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnPause.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnPause.Location = New System.Drawing.Point(578, 480)
+        Me.btnPause.Location = New System.Drawing.Point(370, 495)
         Me.btnPause.Name = "btnPause"
         Me.btnPause.Size = New System.Drawing.Size(130, 54)
         Me.btnPause.TabIndex = 2
@@ -85,7 +85,7 @@ Partial Class frmMain
         '
         Me.btnStop.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnStop.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnStop.Location = New System.Drawing.Point(714, 480)
+        Me.btnStop.Location = New System.Drawing.Point(506, 495)
         Me.btnStop.Name = "btnStop"
         Me.btnStop.Size = New System.Drawing.Size(130, 54)
         Me.btnStop.TabIndex = 3
@@ -96,7 +96,7 @@ Partial Class frmMain
         '
         Me.btnQuit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnQuit.Font = New System.Drawing.Font("ＭＳ Ｐゴシック", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnQuit.Location = New System.Drawing.Point(850, 480)
+        Me.btnQuit.Location = New System.Drawing.Point(642, 495)
         Me.btnQuit.Name = "btnQuit"
         Me.btnQuit.Size = New System.Drawing.Size(130, 54)
         Me.btnQuit.TabIndex = 4
@@ -111,7 +111,7 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(992, 546)
+        Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.btnQuit)
         Me.Controls.Add(Me.btnStop)
         Me.Controls.Add(Me.btnPause)
@@ -119,7 +119,9 @@ Partial Class frmMain
         Me.Controls.Add(Me.btnSetting)
         Me.Controls.Add(Me.lblTimer)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "frmMain"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "ArcheryTimer2"
         Me.ResumeLayout(False)
 
